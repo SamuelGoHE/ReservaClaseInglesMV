@@ -23,6 +23,11 @@ export default function Card({ clase, onPress }) {
           ${clase.precio.toLocaleString('es-CO')}
         </Text>
       </View>
+      <View style={styles.nivel}>
+        <Text style={styles.nivelText}>
+          {clase.nivel}
+        </Text>
+      </View>
     </Pressable>
   );
 }
@@ -48,6 +53,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  nivel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: color.primario,
+  },  
+  
 });
 
 // Precio, nivel y nombre del profesor
@@ -57,7 +68,7 @@ export const CLASES = [
     nivel: 'Básico',
     precio: 32000,
     profesor: {
-      nombre: 'Laura Gómez',
+    nombre: 'Laura Gómez',
     },
   },
 
@@ -66,7 +77,7 @@ export const CLASES = [
     nivel: 'Conversacional',
     precio: 45000,
     profesor: {
-      nombre: 'Michael Reed',
+    nombre: 'Michael Reed',
     },
   },
 
@@ -75,7 +86,7 @@ export const CLASES = [
     nivel: 'Avanzado',
     precio: 58000,
     profesor: {
-      nombre: 'Sofía Ramírez',
+    nombre: 'Sofía Ramírez',
     },
   },
 
@@ -84,7 +95,7 @@ export const CLASES = [
     nivel: 'Intermedio',
     precio: 38000,
     profesor: {
-      nombre: 'Andrés Villa',
+    nombre: 'Andrés Villa',
     },
   },
 
@@ -93,7 +104,7 @@ export const CLASES = [
     nivel: 'Intermedio',
     precio: 42000,
     profesor: {
-      nombre: 'Emma Clarke',
+    nombre: 'Emma Clarke',
     },
   },
 
@@ -102,7 +113,7 @@ export const CLASES = [
     nivel: 'Avanzado',
     precio: 65000,
     profesor: {
-      nombre: 'Daniel Ortiz',
+    nombre: 'Daniel Ortiz',
     },
   },
 
@@ -111,7 +122,7 @@ export const CLASES = [
     nivel: 'Conversacional',
     precio: 28000,
     profesor: {
-      nombre: 'Carolina Peña',
+    nombre: 'Carolina Peña',
     },
   },
 
@@ -120,7 +131,7 @@ export const CLASES = [
     nivel: 'Básico',
     precio: 30000,
     profesor: {
-      nombre: 'Julián Mesa',
+    nombre: 'Julián Mesa',
     },
   },
 ];
