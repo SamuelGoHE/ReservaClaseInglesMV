@@ -1,5 +1,5 @@
-import react from "react";  
-import {crateNativestackNavigator} from '@react-navigation/native-stack';   
+import React from "react";
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ClasesScreen from '../screens/ClasesScreen';
 import {color} from '../theme';
 
@@ -12,11 +12,7 @@ export default function ClasesStack(){
                 name="Home"
                 component={ClasesScreen}
                 options={{headerShown: false}}
-            
-            />
-            <Stack.Screen
-                name="Detalle"
-                component={DetalleScreen}
+
             />
 
         </Stack.Navigator>

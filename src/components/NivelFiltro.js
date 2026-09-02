@@ -1,10 +1,10 @@
-import react from 'react';
-import {pressable, text, styleSheet} from 'react-native';
+import React from 'react';
+import {Pressable, Text, StyleSheet} from 'react-native';
 import {spacing, color, typography} from '../theme';
 
 export default function NivelFiltro({etiqueta, activo, onPress}) {
     return(
-        <pressable
+        <Pressable
         onPress={onPress}
         style={({pressed}) => [
             style.chip,
@@ -12,14 +12,14 @@ export default function NivelFiltro({etiqueta, activo, onPress}) {
             pressed && {opacity: 0.7}
 
         ]}
-        
+
 
         >
-            <text style={[style.texto, activo && style.textoActivo]}>
+            <Text style={[style.texto, activo && style.textoActivo]}>
                 {etiqueta}
-            </text>
-        </pressable>
-            
+            </Text>
+        </Pressable>
+
     )
 }
 
@@ -27,16 +27,16 @@ const style = StyleSheet.create({
   chip: {
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.lg,
-    borderRadius: radius.full,
-    backgroundColor: colors.superficie,
+    borderRadius: 20,
+    backgroundColor: color.fondo,
     borderWidth: 1,
-    borderColor: colors.borde,
+    borderColor: color.border,
     marginRight: spacing.sm,
   },
   chipActivo: {
-    backgroundColor: colors.primario,
-    borderColor: colors.primario,
+    backgroundColor: color.primario,
+    borderColor: color.primario,
   },
-  texto: { fontSize: 13, fontWeight: '600', color: colors.textoSuave },
+  texto: { fontSize: 13, fontWeight: '600', color: color.texto },
   textoActivo: { color: '#FFFFFF' },
 });
