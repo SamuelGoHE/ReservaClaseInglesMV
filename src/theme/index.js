@@ -8,6 +8,7 @@ export const color = {
     primario: "#080707",
     texto: "#333333",
     border: "#CCCCCC",
+    
 
 };
 
