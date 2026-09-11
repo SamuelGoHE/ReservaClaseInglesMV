@@ -27,7 +27,7 @@ const style = StyleSheet.create({
   chip: {
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.lg,
-    borderRadius: radius.full,
+    borderRadius: radius.lg,
     backgroundColor: color.fondo,
     borderWidth: 1,
     borderColor: color.superficie,

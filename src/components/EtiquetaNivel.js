@@ -15,12 +15,10 @@ const styles = StyleSheet.create({
     contenedor: {
         alignSelf: 'flex-start',
         backgroundColor: color.primario,
-        paddingVertical: spacing.sm,
-        paddingHorizontal: spacing.md,
-        borderRadius: 20,
         paddingVertical: 3,
         paddingHorizontal: spacing.md,
-        marginTop: 5,   
+        borderRadius: 20,
+        marginTop: 5,
     },
     texto: {fontSize: 12, fontWeight: '800', letterSpacing: 0.3} 
 });
