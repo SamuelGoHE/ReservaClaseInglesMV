@@ -3,10 +3,10 @@ import { Platform } from 'react-native';
 
 
 export const color = {
-    fondo: "#F5F5F5",
+    fondo: "#978989",
     superficie: "#FFFFFF",
-    primario: "#080707",
-    texto: "#333333",
+    primario: "#9f424242",
+    texto: "#ffffff",
     border: "#CCCCCC",
     
 
@@ -15,8 +15,8 @@ export const color = {
 export const spacing = {
     xs: 4,
     sm: 8,
-    md: 16,
-    lg: 16,
+    md: 18,
+    lg: 20,
     xl: 20,
 }
 

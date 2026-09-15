@@ -32,7 +32,8 @@ export default function ClasesScreen({ navigation }) {
 
   return (
     <View style={[style.pantalla, { paddingTop: insets.top + spacing.md }]}>
-      <View style={{ paddingHorizontal }}>
+      <View style={{ paddingHorizontal, flex: 1 }}>
+
         <Text style={typography.titulo}>Aplicación de clases de inglés</Text>
 
         <View style={style.buscador}>
@@ -56,7 +57,8 @@ export default function ClasesScreen({ navigation }) {
           )}
         </View>
 
-        <ScrollView horizontal style={{ flexGrow: 0 }}>
+        <ScrollView horizontal style={[style.filtros, { flexGrow: 0 }]}>
+
           {NIVELES.map((item) => (
             <NivelFiltro
               key={item}
@@ -68,6 +70,7 @@ export default function ClasesScreen({ navigation }) {
         </ScrollView>
 
         <FlatList
+          style={{ flex: 1 }}
           data={resultados}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
@@ -119,6 +122,11 @@ const style = StyleSheet.create({
     borderColor: color.border,
   },
   input: { flex: 1, fontSize: 14, color: color.texto, paddingVertical: 0 },
+  filtros: {
+  marginTop: spacing.sm,
+  marginBottom: spacing.md,
+},
+
 });
 
 

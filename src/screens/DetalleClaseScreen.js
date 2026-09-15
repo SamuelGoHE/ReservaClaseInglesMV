@@ -1,50 +1,52 @@
-import React, {useState, useMemo, useLayoutEffect} from 'react';
-import {View, Text, ScrollView, StyleSheet, Alert, Image} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Ionicons} from '@expo/vector-icons';
+import React, { useState, useMemo, useLayoutEffect } from 'react';
+import { View, Text, ScrollView, StyleSheet, Alert, Image } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import useResponsive from '../hooks/useResponsive';
-import {color, spacing, typography, radius} from '../theme';
+import { color, spacing, typography, radius } from '../theme';
 import { formatearPrecio } from '../data/clases';
 
-export default function DetalleClaseScreen ({route, navigation}){
-    const insets = useSafeAreaInsets();
-    const {clase} = route.params;
-    const {isTablet} = useResponsive();
+export default function DetalleClaseScreen({ route, navigation }) {
+  const insets = useSafeAreaInsets();
+  const { clase } = route.params;
+  const { isTablet } = useResponsive();
 
-    return(
-        <view style={styles.pantalla}>
-            <scrollview
-            contentContainerStyle={{paddingBottom: 120}}
-            showsVerticalScrollIndicator={false}
-            
-            >
-                <image
-                source={{uri: clase.imagen}}
-                style={[styles.portada, {height: isTablet ? 300: 200}]}
-                resizeMode='cover'
-                 
-                
-                />
-            </scrollview>
-        </view>
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: clase.titulo });
+  }, []);
 
-        /*descripcion de la clase, 
-        nombre del profesor completo,
-        foto del profesor,
-        precio, duracion, cupos, horario y fotos.*/
-        
-    
+  return (
+    <View style={styles.pantalla}>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 120 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <Image
+          source={{ uri: clase.imagen }}
+          style={[styles.portada, { height: isTablet ? 300 : 200 }]}
+          resizeMode="cover"
+        />
+      </ScrollView>
+    </View>
+  );
 
-        
-
-
-    )
+  /* descripcion de la clase,
+  nombre del profesor completo,
+  foto del profesor,
+  precio, duracion, cupos, horario y fotos. */
 }
 
-
 const styles = StyleSheet.create({
-  pantalla: { flex: 1, backgroundColor: color.fondo },
-  portada: { width: '100%', backgroundColor: color.primarioSuave },
+  pantalla: {
+    flex: 1,
+    backgroundColor: color.fondo,
+  },
+
+  portada: {
+    width: '100%',
+    backgroundColor: color.primarioSuave,
+  },
+
   datos: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -52,8 +54,18 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     paddingVertical: spacing.lg,
   },
-  dato: { alignItems: 'center', gap: 2 },
-  datoValor: { fontSize: 16, fontWeight: '800', color: color.texto },
+
+  dato: {
+    alignItems: 'center',
+    gap: 2,
+  },
+
+  datoValor: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: color.texto,
+  },
+
   profesor: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -62,9 +74,27 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     padding: spacing.lg,
   },
-  avatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: color.borde },
-  profesorNombre: { fontSize: 15, fontWeight: '700', color: color.texto },
-  descripcion: { ...typography.cuerpo, color: color.textoSuave, lineHeight: 22, marginTop: spacing.sm },
+
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: color.borde,
+  },
+
+  profesorNombre: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: color.texto,
+  },
+
+  descripcion: {
+    ...typography.cuerpo,
+    color: color.textoSuave,
+    lineHeight: 22,
+    marginTop: spacing.sm,
+  },
+
   barra: {
     position: 'absolute',
     left: 0,
@@ -76,7 +106,12 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: color.borde,
     paddingVertical: spacing.lg,
-    paddingTop: spacing.lg
+    paddingTop: spacing.lg,
   },
-  precio: { fontSize: 18, fontWeight: '800', color: color.primario },
+
+  precio: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: color.primario,
+  },
 });
