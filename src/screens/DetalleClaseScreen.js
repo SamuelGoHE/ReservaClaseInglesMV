@@ -26,6 +26,45 @@ export default function DetalleClaseScreen({ route, navigation }) {
           style={[styles.portada, { height: isTablet ? 300 : 200 }]}
           resizeMode="cover"
         />
+                <View style={styles.profesor}>
+          <Image source={{ uri: clase.profesor.foto }} style={styles.avatar} />
+          <Text style={styles.profesorNombre}>{clase.profesor.nombre}</Text>
+        </View>
+                <View style={styles.datos}>
+          <View style={styles.dato}>
+            <Text style={styles.datoValor}>{clase.duracion} min</Text>
+            <Text style={styles.datoLabel}>Duración</Text>
+          </View>
+
+          <View style={styles.dato}>
+            <Text style={styles.datoValor}>{clase.cupos}</Text>
+            <Text style={styles.datoLabel}>Cupos</Text>
+          </View>
+
+          <View style={styles.dato}>
+            <Text style={styles.datoValor}>{formatearPrecio(clase.precio)}</Text>
+            <Text style={styles.datoLabel}>Precio</Text>
+          </View>
+        </View>
+
+                <Text style={typography.subtitulo}>Descripción</Text>
+        <Text style={styles.descripcion}>{clase.descripcion}</Text>
+
+                <Text style={typography.subtitulo}>Horarios disponibles</Text>
+
+        {clase.horarios.map((horario) => (
+          <View key={horario} style={styles.horario}>
+            <Ionicons name="time-outline" size={16} color={color.texto} />
+            <Text style={styles.descripcion}>{horario}</Text>
+          </View>
+        ))}
+
+
+
+
+        
+
+
       </ScrollView>
     </View>
   );
@@ -65,6 +104,11 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: color.texto,
   },
+    datoLabel: {
+    fontSize: 12,
+    color: color.textoSuave,
+  },
+
 
   profesor: {
     flexDirection: 'row',
@@ -94,6 +138,13 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: spacing.sm,
   },
+    horario: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    paddingVertical: spacing.xs,
+  },
+
 
   barra: {
     position: 'absolute',
@@ -114,4 +165,4 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: color.primario,
   },
-});
+});   

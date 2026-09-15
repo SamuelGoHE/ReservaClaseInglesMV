@@ -4,10 +4,13 @@ import { Platform } from 'react-native';
 
 export const color = {
     fondo: "#978989",
-    superficie: "#FFFFFF",
+    superficie: "#dbc9c9",
     primario: "#9f424242",
-    texto: "#ffffff",
+    texto: "#080808",
     border: "#CCCCCC",
+    primarioSuave: "#111010",
+    textoSuave: "#090909",
+    borde: "#f7f1f1",
     
 
 };
@@ -29,6 +32,10 @@ export const radius = {
 export const typography = {
     titulo: {fontSize: 28, fontWeight: "800", color: color.texto},
     subtitulo: {fontSize: 20, fontWeight: "600", color: color.texto},
+    cuerpo: { fontSize: 14, fontWeight: "400", color: color.texto },
+
 }
 
 export default {color, spacing, radius, typography};
+
+

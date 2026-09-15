@@ -2,18 +2,19 @@ import { useWindowDimensions } from "react-native";
 
 export default function useResponsive() {
     const {width, height} = useWindowDimensions();
-    const isTable = width >= 768;
+    const isTablet = width >= 768;
+
     const isHorizontal = width > height;
 
     return{
         width,
         height,
-        isTable,
+        isTablet,
         isHorizontal,
 
-        columnas: isTable ? 2 : 1,
-        ancho: isTable ? 320 : Math.min(width* 0.72, 320),
-        paddingHorizontal: isTable ? 32 : 16,
+        columnas: isTablet ? 2 : 1,
+        ancho: isTablet ? 320 : Math.min(width* 0.72, 320),
+        paddingHorizontal: isTablet ? 32 : 16,
     }
 
 }
