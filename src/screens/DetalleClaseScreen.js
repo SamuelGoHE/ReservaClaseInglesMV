@@ -1,20 +1,43 @@
 import React, { useState, useMemo, useLayoutEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, Alert, Image } from 'react-native';
+import { View, Pressable, Text, ScrollView, StyleSheet, Alert, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import useResponsive from '../hooks/useResponsive';
 import { color, spacing, typography, radius } from '../theme';
 import { formatearPrecio } from '../data/clases';
 
+
 export default function DetalleClaseScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { clase } = route.params;
+  const [cupos, setCupos] = useState(clase.cupos);
   const { isTablet } = useResponsive();
 
   useLayoutEffect(() => {
     navigation.setOptions({ title: clase.titulo });
   }, []);
 
+  const confirmarReserva = () => {
+    if (cupos > 0) {
+      Alert.alert(
+        'Confirmar reserva',
+        `Desea resrvar la clase ${clase.titulo}?`,
+        [
+          {
+            text: 'Cancelar',
+            style: 'cancel',
+          },
+          {
+            text: 'Reservar',
+            onPress: () => {
+              setCupos(cupos - 1);
+
+            },
+          },
+        ]
+      );
+    }
+  };
   return (
     <View style={styles.pantalla}>
       <ScrollView
@@ -26,18 +49,20 @@ export default function DetalleClaseScreen({ route, navigation }) {
           style={[styles.portada, { height: isTablet ? 300 : 200 }]}
           resizeMode="cover"
         />
-                <View style={styles.profesor}>
+        <View style={styles.profesor}>
           <Image source={{ uri: clase.profesor.foto }} style={styles.avatar} />
           <Text style={styles.profesorNombre}>{clase.profesor.nombre}</Text>
         </View>
-                <View style={styles.datos}>
+        <View style={styles.datos}>
           <View style={styles.dato}>
+            <Ionicons name="time-outline" size={16} color={color.texto} />
             <Text style={styles.datoValor}>{clase.duracion} min</Text>
             <Text style={styles.datoLabel}>Duración</Text>
           </View>
 
           <View style={styles.dato}>
-            <Text style={styles.datoValor}>{clase.cupos}</Text>
+            <Ionicons name="people-outline" size={16} color={color.texto} />
+            <Text style={styles.datoValor}>{cupos}</Text>
             <Text style={styles.datoLabel}>Cupos</Text>
           </View>
 
@@ -47,10 +72,10 @@ export default function DetalleClaseScreen({ route, navigation }) {
           </View>
         </View>
 
-                <Text style={typography.subtitulo}>Descripción</Text>
+        <Text style={typography.subtitulo}>Descripción</Text>
         <Text style={styles.descripcion}>{clase.descripcion}</Text>
 
-                <Text style={typography.subtitulo}>Horarios disponibles</Text>
+        <Text style={typography.subtitulo}>Horarios disponibles</Text>
 
         {clase.horarios.map((horario) => (
           <View key={horario} style={styles.horario}>
@@ -60,12 +85,14 @@ export default function DetalleClaseScreen({ route, navigation }) {
         ))}
 
 
-
-
-        
-
-
       </ScrollView>
+      <View style={styles.barra}>
+        <Text style={styles.precio}>{formatearPrecio(clase.precio)}</Text>
+
+        <Pressable style={styles.boton} onPress={confirmarReserva}>
+          <Text style={styles.botonTexto}>Reservar</Text>
+        </Pressable>
+      </View>
     </View>
   );
 
@@ -104,7 +131,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: color.texto,
   },
-    datoLabel: {
+  datoLabel: {
     fontSize: 12,
     color: color.textoSuave,
   },
@@ -138,7 +165,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: spacing.sm,
   },
-    horario: {
+  horario: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
@@ -159,6 +186,22 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.lg,
     paddingTop: spacing.lg,
   },
+
+  boton: {
+    flex: 1,
+    backgroundColor: color.primario,
+    borderRadius: radius.md,
+    paddingVertical: spacing.md,
+    marginLeft: spacing.lg,
+    alignItems: 'center',
+  },
+
+  botonTexto: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: color.superficie,
+  },
+
 
   precio: {
     fontSize: 18,

@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 export const color = {
     fondo: "#978989",
     superficie: "#dbc9c9",
-    primario: "#9f424242",
+    primario: "#00000042",
     texto: "#080808",
     border: "#CCCCCC",
     primarioSuave: "#111010",
